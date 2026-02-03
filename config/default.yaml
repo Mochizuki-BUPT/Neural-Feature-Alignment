@@ -1,0 +1,55 @@
+# Neural Feature Alignment Configuration
+
+model:
+  default_path: "Qwen/Qwen2.5-7B"
+  models:
+    - "Qwen2.5-0.5B"
+    - "Qwen2.5-1.5B"
+    - "Qwen2.5-3B"
+    - "Qwen2.5-7B"
+    - "Qwen2.5-14B"
+    - "Qwen2.5-0.5B-Instruct"
+    - "Qwen2.5-1.5B-Instruct"
+    - "Qwen2.5-3B-Instruct"
+    - "Qwen2.5-7B-Instruct"
+    - "Qwen2.5-14B-Instruct"
+    - "Qwen2.5-Math-1.5B"
+    - "Qwen2.5-Math-7B"
+    - "DeepSeek-R1-Distill-Qwen-1.5B"
+    - "DeepSeek-R1-Distill-Qwen-7B"
+    - "DeepSeek-R1-Distill-Qwen-14B"
+
+feature_extraction:
+  type: "AGOP"
+  top_k: 10
+  dtype: "float16"
+  device: "auto"
+
+random_seed: 42
+
+nnfpp:
+  top_k_features: 10
+  path_method: "ms"
+  epsilon: 1e-12
+
+eeg:
+  tmin: 0.0
+  tmax: 0.5
+  freq_bands:
+    delta: [1, 4]
+    theta: [4, 8]
+    alpha: [8, 13]
+    beta: [13, 30]
+    gamma: [30, 45]
+
+alignment:
+  method: "pearson"
+  min_samples: 30
+  num_articles: 5
+
+paths:
+  data_root: "./data"
+  results_dir: "./results"
+
+logging:
+  level: "INFO"
